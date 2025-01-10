@@ -1,37 +1,40 @@
 package com.kudaibergenov.spring.models;
 
-import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 public class Person {
     private int id;
 
+    private List<Book> books;
+
     @NotEmpty(message = "Name should not be empty")
-    @Size(min = 2, max = 30, message = "Name should between 2 and 30 characters")
+    @Size(min = 2, max = 40, message = "Name should be between 2 and 40 characters")
     private String name;
 
-    @Min(value = 0, message = "Age should not be less than 0")
-    private int age;
-
-    @NotEmpty(message = "Email should not be empty")
-    @Email(message = "Email should be valid")
-    private String email;
+    @Min(value = 1900, message = "Date should not be less than 1900")
+    @Max(value = 2025, message = "Date should not be greater than 2025")
+    private int dateOfBirth;
 
     public Person() {
 
     }
 
-    public Person(int id, String name, int age, String email) {
+    public Person(int id, String name, int dateOfBirth) {
         this.id = id;
         this.name = name;
-        this.age = age;
-        this.email = email;
+        this.dateOfBirth = dateOfBirth;
     }
 
     public int getId() {
         return id;
+    }
+
+    public List<Book> getBooks() {
+        return books;
     }
 
     public void setId(int id) {
@@ -46,19 +49,13 @@ public class Person {
         this.name = name;
     }
 
-    public int getAge() {
-        return age;
+    public int getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setDateOfBirth(int dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
-    public String getEmail() {
-        return email;
-    }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
 }
