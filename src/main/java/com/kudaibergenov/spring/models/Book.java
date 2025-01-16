@@ -40,4 +40,20 @@ public class Book {
     public int getYear() {
         return year;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
 }

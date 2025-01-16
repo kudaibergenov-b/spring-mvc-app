@@ -1,5 +1,6 @@
 package com.kudaibergenov.spring.dao;
 
+import com.kudaibergenov.spring.models.Book;
 import com.kudaibergenov.spring.models.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -25,13 +26,19 @@ public class PersonDAO {
                         .stream().findAny().orElse(null);
     }
 
+    public List<Book> getBooks(int id) {
+        return jdbcTemplate.query("SELECT book.name, book.author, book.year FROM person JOIN book ON person.id = book.personid WHERE person.id=?",
+                new Object[]{id},
+                new BeanPropertyRowMapper<>(Book.class));
+    }
+
     public void save(Person person) {
-        jdbcTemplate.update("INSERT INTO person(name, age) VALUES (?, ?)",
+        jdbcTemplate.update("INSERT INTO person(name, dateOfBirth) VALUES (?, ?)",
                 person.getName(), person.getDateOfBirth());
     }
 
     public void update(int id, Person updatedPerson) {
-        jdbcTemplate.update("UPDATE person SET name=?, age=?, WHERE id=?",
+        jdbcTemplate.update("UPDATE person SET name=?, dateOfBirth=? WHERE id=?",
                 updatedPerson.getName(), updatedPerson.getDateOfBirth(), id);
     }
 

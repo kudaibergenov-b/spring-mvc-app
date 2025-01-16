@@ -4,19 +4,18 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Person {
     private int id;
-
-    private List<Book> books;
 
     @NotEmpty(message = "Name should not be empty")
     @Size(min = 2, max = 40, message = "Name should be between 2 and 40 characters")
     private String name;
 
     @Min(value = 1900, message = "Date should not be less than 1900")
-    @Max(value = 2025, message = "Date should not be greater than 2025")
+    @Max(value = 2024, message = "Date should not be greater than 2025")
     private int dateOfBirth;
 
     public Person() {
@@ -31,10 +30,6 @@ public class Person {
 
     public int getId() {
         return id;
-    }
-
-    public List<Book> getBooks() {
-        return books;
     }
 
     public void setId(int id) {
@@ -56,6 +51,4 @@ public class Person {
     public void setDateOfBirth(int dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
-
-
 }
