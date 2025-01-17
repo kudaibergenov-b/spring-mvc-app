@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class BookDAO {
@@ -26,11 +27,12 @@ public class BookDAO {
                 .stream().findAny().orElse(null);
     }
 
-    public Person getPerson(int id) {
-        return jdbcTemplate.query("SELECT person.name FROM book JOIN person ON book.personid = person.id WHERE book.id=?",
+    // Поиск владельца книги
+    public Optional<Person> getPerson(int id) {
+        return jdbcTemplate.query("SELECT person.* FROM book JOIN person ON book.personid = person.id WHERE book.id=?",
                 new Object[]{id},
                 new BeanPropertyRowMapper<>(Person.class))
-                .stream().findAny().orElse(null);
+                .stream().findAny();
     }
 
     public void save(Book book) {
@@ -47,11 +49,13 @@ public class BookDAO {
         jdbcTemplate.update("DELETE FROM book WHERE id=?", id);
     }
 
-    public void free(int id) {
+    // Освободить книгу
+    public void release(int id) {
         jdbcTemplate.update("UPDATE book SET personid=null WHERE id=?", id);
     }
 
-    public void appoint(int id, int personId) {
-        jdbcTemplate.update("UPDATE book SET personid=? WHERE id=?", personId, id);
+    // Назначить книгу
+    public void assign(int id, Person selectedPerson) {
+        jdbcTemplate.update("UPDATE book SET personid=? WHERE id=?", selectedPerson.getId(), id);
     }
 }

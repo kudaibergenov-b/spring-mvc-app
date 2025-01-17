@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Update person</title>
+    <title>Изменение человека</title>
 </head>
 <body>
 
@@ -15,7 +15,7 @@
     <input type="text" th:field="*{dateOfBirth}" id="dateOfBirth"/>
     <div style="color:red" th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}">Date of birth Error</div>
     <br/>
-    <input type="submit" value="Редактировать!"/>
+    <input type="submit" value="Редактировать"/>
 </form>
 
 </body>

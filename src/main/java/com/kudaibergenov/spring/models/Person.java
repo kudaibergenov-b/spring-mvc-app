@@ -4,8 +4,6 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Person {
     private int id;
@@ -17,16 +15,6 @@ public class Person {
     @Min(value = 1900, message = "Date should not be less than 1900")
     @Max(value = 2024, message = "Date should not be greater than 2025")
     private int dateOfBirth;
-
-    public Person() {
-
-    }
-
-    public Person(int id, String name, int dateOfBirth) {
-        this.id = id;
-        this.name = name;
-        this.dateOfBirth = dateOfBirth;
-    }
 
     public int getId() {
         return id;
