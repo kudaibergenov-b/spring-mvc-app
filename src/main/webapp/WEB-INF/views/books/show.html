@@ -9,7 +9,7 @@
 <p th:text="${book.getName() + ', ' + book.getAuthor() + ', ' + book.getYear()}">VALUE</p>
 
 <div th:if="${owner}">
-    <p th:text="'Книга сейчас у: ' + ${person.getName()}">
+    <p th:text="'Книга сейчас у: ' + ${owner.getName()}">
 
     <form th:method="PATCH" th:action="@{/books/release/{id}(id=${book.getId()})}">
         <input type="submit" value="Освободить книгу"/>

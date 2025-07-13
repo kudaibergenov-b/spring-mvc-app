@@ -20,7 +20,8 @@ public class BooksController {
     private final PersonDAO personDAO;
 
     @Autowired
-    public BooksController(BookDAO bookDAO, PersonDAO personDAO) {this.bookDAO = bookDAO;
+    public BooksController(BookDAO bookDAO, PersonDAO personDAO) {
+        this.bookDAO = bookDAO;
         this.personDAO = personDAO;
     }
 
